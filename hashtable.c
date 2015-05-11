@@ -1,7 +1,7 @@
-#include "hashtable.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "hashtable.h"
 
 dict_t *lookup(char *s, dict_t *hashtab)
 {
