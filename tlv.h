@@ -5,7 +5,6 @@
 typedef struct tlv{
 	unsigned short tag;
 	unsigned char *description;
-	bool isTemplate; 
 	unsigned short len;
 	unsigned long val;
 }tlv_t;

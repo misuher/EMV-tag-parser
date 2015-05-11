@@ -1,7 +1,6 @@
-#include "tlv.h"
 #include <stdio.h>
 #include <string.h>
-
+#include "tlv.h"
 
 void tlv_init(tlv_t *tlv){
 	memset(&tlv->tag, 0,sizeof(tlv->tag));

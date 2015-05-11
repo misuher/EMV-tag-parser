@@ -4,8 +4,6 @@
 #include "tlv.h"
 #include "hashtable.h"
 
-#define HASHSIZE 200
-
 
 int main(){
 	/*Se hace un test con la cadena hexadecimal 6F1A840E315041592E5359532E4444463031A5088801025F2D02656E
