@@ -9,9 +9,9 @@ void emvInit(dict_t *hashtab[HASHSIZE])
 	addItem("9F02", "Amount, Authorised(Numeric)", hashtab);
 	addItem("9F04", "Amount, Other(Binary)", hashtab);
 	addItem("9F03", "Amount, Other(Numeric)", hashtab);
-	addItem("", "", hashtab);
-	addItem("", "", hashtab);
-	addItem("", "", hashtab);
+	addItem("9F3A", "Amount, Reference Currency", hashtab);
+	addItem("9F26", "Application Cryptogram", hashtab);
+	addItem("9F42", "", hashtab);
 	addItem("", "", hashtab);
 	addItem("", "", hashtab);
 	addItem("", "", hashtab);

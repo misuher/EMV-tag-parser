@@ -4,7 +4,6 @@
 
 void tlv_init(tlv_t *tlv){
 	memset(&tlv->tag, 0,sizeof(tlv->tag));
-	memset(&tlv->description, 0,sizeof(tlv->description));
 	memset(&tlv->len, 0,sizeof(tlv->len));
 	memset(&tlv->val, 0,sizeof(tlv->val));
 }
