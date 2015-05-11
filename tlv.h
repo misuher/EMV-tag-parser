@@ -11,6 +11,6 @@ typedef struct tlv{
 
 void tlv_init(tlv_t *tlv);
 void tlv_decode(unsigned char arr[], tlv_t *tlv);
-void tlv_print(tlv_t *tlv);
+void tlv_printHEXtag(tlv_t *tlv);
 
 #endif
