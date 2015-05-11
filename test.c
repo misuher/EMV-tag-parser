@@ -1,4 +1,9 @@
-
+//###############################################################################
+//TODO:
+//	Change hash table value to atlv_t instead of char[]
+//	Make atlv_t database
+//	Make tlv_decode logic
+//###############################################################################
 #include <stdio.h>
 #include <string.h>
 #include "tlv.h"
