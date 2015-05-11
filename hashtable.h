@@ -9,10 +9,11 @@ typedef struct nlist{
     char *value; 
 }dict_t;
 
-dict_t *lookup(char *s, dict_t *hashtab);  //buscar en el dict
-dict_t *addItem(char *name, char *defn, dict_t *hashtab);
+dict_t *lookup(char *s, dict_t *hashtab[HASHSIZE]);  //buscar en el dict
+dict_t *addItem(char *name, char *defn, dict_t *hashtab[HASHSIZE]);
 unsigned hash(char *s);
 char *strdupp(char *s);
+void displayTable(dict_t *hashtab[HASHSIZE]);
 
 
 #endif //HASHTABLE_H
