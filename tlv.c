@@ -3,9 +3,17 @@
 #include "tlv.h"
 
 void tlv_init(tlv_t *tlv){
-	memset(&tlv->tag, 0,sizeof(tlv->tag));
-	memset(&tlv->len, 0,sizeof(tlv->len));
-	memset(&tlv->val, 0,sizeof(tlv->val));
+	memset(&tlv->Tag, 0,sizeof(tlv->Tag));
+	memset(&tlv->Len, 0,sizeof(tlv->Len));
+	tlv->Val=NULL;
+}
+
+void tlvInfo_init(tlvInfo_t *tlv){
+	memset(&tlv->PC, 0,sizeof(tlv->PC));
+	memset(&tlv->Source, 0,sizeof(tlv->Source));
+	memset(&tlv->Template, 0,sizeof(tlv->Template));
+	tlv->RangeLen=NULL;
+	tlv->Description =NULL;
 }
 
 void tlv_decode(unsigned char arr[], tlv_t *tlv){ /* TODO: in process */
@@ -14,13 +22,13 @@ void tlv_decode(unsigned char arr[], tlv_t *tlv){ /* TODO: in process */
 	{
 		unsigned short aux;
 		aux = arr[0]<<8 | arr[1];
-		memcpy(&tlv->tag, &aux, 2);
+		memcpy(&tlv->Tag, &aux, 2);
 	}else
 	{
-		memcpy(&tlv->tag, arr, 1);
+		memcpy(&tlv->Tag, arr, 1);
 	}
 }
 
 void tlv_printHEXtag(tlv_t *tlv){
-	printf("\n %X", tlv->tag);
+	printf("\n %X", tlv->Tag);
 }

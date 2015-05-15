@@ -1,18 +1,19 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
+#include "tlv.h"
+
 #define HASHSIZE 200
 
 typedef struct nlist{ 
     struct nlist *next; 
-    char *key; 
-    char *value; 
+    unsigned short key; 
+    tlvInfo_t *value; 
 }dict_t;
 
-dict_t *lookup(char *s, dict_t *hashtab[HASHSIZE]);  //buscar en el dict
-dict_t *addItem(char *name, char *defn, dict_t *hashtab[HASHSIZE]);
-unsigned hash(char *s);
-char *strdupp(char *s);
+unsigned hash(unsigned char *s);
+dict_t *lookup(unsigned short *s, dict_t *hashtab[HASHSIZE]);  //buscar en el dict
+dict_t *addItem(unsigned short key, tlvInfo_t *value, dict_t *hashtab[HASHSIZE]);
 void displayTable(dict_t *hashtab[HASHSIZE]);
 
 

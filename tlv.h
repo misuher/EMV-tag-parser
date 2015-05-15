@@ -2,22 +2,23 @@
 #define TLV_H
 
 
-typedef struct tlv{
-	unsigned short tag;
-	unsigned short len;
-	unsigned long val;  
+typedef struct{
+	unsigned short Tag;
+	unsigned short Len;
+	unsigned char *Val;  
 }tlv_t;
 
-typedef struct additionData{
-	tlv_t tlv;
+typedef struct{
+	tlv_t *tlv;
 	unsigned char PC; /* primitive || constructed */
-	unsigned char source; /* ICC || Terminal */
-	unsigned char Template;
-	unsigned char rangeLen; /* rango teorico de la longitud del campo */
-	unsigned char *description;
-}atlv_t;
+	unsigned char Source; /* ICC || Terminal */
+	unsigned short Template;
+	unsigned char *RangeLen; /* rango teorico de la longitud del campo */
+	unsigned char *Description;
+}tlvInfo_t;
 
 void tlv_init(tlv_t *tlv);
+void tlvInfo_init(tlvInfo_t * tlv);
 void tlv_decode(unsigned char arr[], tlv_t *tlv);
 void tlv_printHEXtag(tlv_t *tlv);
 
