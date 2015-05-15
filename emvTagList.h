@@ -7,6 +7,9 @@
 
 tlvInfo_t * tlvInfo_set(unsigned char PC,unsigned char Source,
 	unsigned short Template, unsigned char *RangeLen, unsigned char *Description);
+
+tlvInfo_t * tlvInfo_get(unsigned short Tag,dict_t *hashtab[HASHSIZE]);
+
 void emvInit(dict_t *hashtab[HASHSIZE]);
 
 #endif //EMVTAGLIST_H

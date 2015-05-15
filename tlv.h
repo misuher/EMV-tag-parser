@@ -1,15 +1,16 @@
 #ifndef TLV_H
 #define TLV_H
 
+#define SIZE 200
 
 typedef struct{
 	unsigned short Tag;
 	unsigned short Len;
-	unsigned char *Val;  
+	unsigned char Val[SIZE];  
 }tlv_t;
 
 typedef struct{
-	tlv_t *tlv;
+	tlv_t tlv;
 	unsigned char PC; /* primitive || constructed */
 	unsigned char Source; /* ICC || Terminal */
 	unsigned short Template;
@@ -19,7 +20,9 @@ typedef struct{
 
 void tlv_init(tlv_t *tlv);
 void tlvInfo_init(tlvInfo_t * tlv);
-void tlv_decode(unsigned char arr[], tlv_t *tlv);
-void tlv_printHEXtag(tlv_t *tlv);
+tlvInfo_t * tlv_parse(unsigned char arr[], unsigned short size);
+void tlv_getTagData(tlvInfo_t * t);
+
+
 
 #endif

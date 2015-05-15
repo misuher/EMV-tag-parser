@@ -58,14 +58,13 @@ void displayTable(dict_t *hashtab[HASHSIZE])
     	else
     	{
       		t=hashtab[i];
-          printf("Tag:\t\tPC:\t\tSource:\t\tRange:\t\tDescription:\n");
-      		printf("(");
+          printf("Tag:\t\tPC:\t\t\t\tSource:\t\t\tTemplate:\tRange:\t\tDescription:\n");
       		for(;t!=NULL;t=t->next)
       		{
-				    printf("(%X\t\t%s\t\t%s\t\t%X\t\t%s\t\t%s) ",t->key,t->value->PC?"primitive":"constructed",
+				    printf("%X\t\t%s\t\t%s\t\t%X\t\t\t%s\t\t\t%s\n",t->key,t->value->PC?"primitive":"constructed",
                                                          t->value->Source?"ICC":"Terminal",t->value->Template, 
                                                          t->value->RangeLen, t->value->Description);
-      			printf(")\n");
+      			printf("\n");
     		  }
   		}
   	}

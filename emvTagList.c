@@ -16,6 +16,10 @@ tlvInfo_t * tlvInfo_set(unsigned char PC,unsigned char Source,
 	return t;
 }
 
+tlvInfo_t * tlvInfo_get(unsigned short Tag,dict_t *hashtab[HASHSIZE]){
+
+}
+
 void emvInit(dict_t *hashtab[HASHSIZE])
 {
 	addItem(0x9F01,tlvInfo_set(0,0,0x22," ","ggffkgkjh "), hashtab);
