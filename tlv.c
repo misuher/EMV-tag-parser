@@ -4,6 +4,7 @@
 #include "tlv.h"
 
 
+
 void tlv_init(tlv_t *tlv){
 	memset(&tlv->Tag, 0,sizeof(tlv->Tag));
 	memset(&tlv->Len, 0,sizeof(tlv->Len));
@@ -56,15 +57,26 @@ tlvInfo_t * tlv_parse(unsigned char *arr, unsigned short size){
 		for(j=0;j <t[i].tlv.Len;j++ ){
 			printf("%X", t[i].tlv.Val[j]);
 		}
+		printf("\n");
 		index += t[i].tlv.Len;
-		tlv_getTagData(&t[i]);
 	}
-	printf("\n%lu\n", sizeof(t)/sizeof(t[0]) );
 	return t;
 }
 
-void tlv_getTagData(tlvInfo_t * t){
-
+void tlv_subParse(tlvInfo_t * t){//TODO-recursive
+	
+	unsigned char num=0;//num of parsed tlv's
+	int i;
+	for(i = 0; t[i].tlv.Tag!=0; i++){
+		num++; //will be used as index for save the sub tlv structs
+	}
+	for (i = 0; t[i].tlv.Tag!=0; i++)
+	{
+		if(t[i].PC || t[i].Template!=0){ //case where t[i].tlv.Val has a sub tlv struct to parse
+			 printf("size:%d",num);
+			t[num+i] = *tlv_parse(t[i].tlv.Val, num);
+		}
+	}
 }
 
 

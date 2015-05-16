@@ -1,0 +1,9 @@
+{
+  "cmd": "gcc",
+  "args": [ "test.c", "tlv.c","hashtable.c", "emvTagList.c"],
+  "sh": true,
+  "cwd": "{FILE_ACTIVE_PATH}",
+  "env": {
+  },
+  "errorMatch": "^regexp$"
+}

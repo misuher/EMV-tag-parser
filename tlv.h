@@ -21,7 +21,7 @@ typedef struct{
 void tlv_init(tlv_t *tlv);
 void tlvInfo_init(tlvInfo_t * tlv);
 tlvInfo_t * tlv_parse(unsigned char arr[], unsigned short size);
-void tlv_getTagData(tlvInfo_t * t);
+void tlv_subParse(tlvInfo_t * t);
 
 
 

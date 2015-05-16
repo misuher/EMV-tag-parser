@@ -5,10 +5,10 @@
 
 #define HASHSIZE 200
 
-typedef struct nlist{ 
-    struct nlist *next; 
-    unsigned short key; 
-    tlvInfo_t *value; 
+typedef struct nlist{
+    struct nlist *next;
+    unsigned short key;
+    tlvInfo_t *value;
 }dict_t;
 
 unsigned hash(unsigned char *s);

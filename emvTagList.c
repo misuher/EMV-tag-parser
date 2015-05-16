@@ -16,15 +16,24 @@ tlvInfo_t * tlvInfo_set(unsigned char PC,unsigned char Source,
 	return t;
 }
 
-tlvInfo_t * tlvInfo_get(unsigned short Tag,dict_t *hashtab[HASHSIZE]){
-
+void tlvInfo_get(tlvInfo_t *t,dict_t *hashtab[HASHSIZE]){
+	int i;
+	dict_t * dict;
+	for(i=0; t[i].tlv.Tag!=0; i++){
+		dict = lookup(&t[i].tlv.Tag, hashtab);
+		t[i].PC = dict->value->PC;
+		t[i].Source = dict->value->Source;
+		t[i].Template = dict->value->Template;
+		t[i].RangeLen = dict->value->RangeLen;
+		t[i].Description = dict->value->Description;
+	}
 }
 
 void emvInit(dict_t *hashtab[HASHSIZE])
 {
 	addItem(0x9F01,tlvInfo_set(0,0,0x22," ","ggffkgkjh "), hashtab);
-	/*addItem("9F40", "Additional Terminal Capabilities", hashtab);
-	addItem("81", "Amount, Authorised(Binary)", hashtab);
+	addItem(0x6F, tlvInfo_set(1,0,0x22," ","ggffkgkjh "), hashtab);
+	/*addItem("81", "Amount, Authorised(Binary)", hashtab);
 	addItem("9F02", "Amount, Authorised(Numeric)", hashtab);
 	addItem("9F04", "Amount, Other(Binary)", hashtab);
 	addItem("9F03", "Amount, Other(Numeric)", hashtab);

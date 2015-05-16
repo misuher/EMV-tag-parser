@@ -29,7 +29,7 @@ int main(){
 				02-len
 				656E-value
 	*/
-
+	
 	dict_t *dict[HASHSIZE];
 	memset(dict, 0, sizeof(dict));
 	emvInit(dict);
@@ -46,9 +46,13 @@ int main(){
 	tlvInfo_t *t=malloc(sizeof(tlvInfo_t)*size);
 	tlvInfo_init(t);
 	t=tlv_parse(test, size);
+	tlvInfo_get(t,dict);
+	tlv_subParse(t);
+	
 	printf("%X\n", t[0].tlv.Tag);
 	printf("%X\n", t[1].tlv.Tag);
-	printf("%X\n", t[2].tlv.Tag);
+	printf("%X\n", t[0].PC);
+	printf("%X\n", t[0].Template);
 
 	return 0;
 }

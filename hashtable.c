@@ -29,7 +29,7 @@ dict_t *addItem(unsigned short key, tlvInfo_t *value, dict_t *hashtab[HASHSIZE])
     unsigned char str[15];
     sprintf(str,"%d",key);
     unsigned hashval;
-    if ((np = lookup(&key, hashtab)) == NULL) { // not found 
+    if ((np = lookup(&key, hashtab)) == NULL) { // not found
         np = (dict_t *) malloc(sizeof(*np));
         if (np == NULL)
           return NULL;
@@ -39,8 +39,8 @@ dict_t *addItem(unsigned short key, tlvInfo_t *value, dict_t *hashtab[HASHSIZE])
         np->key = key;
         np->value = value;
         if(&np->key==NULL || np->value==NULL) return NULL;
-    } else // already there 
-        free((void *) np->value); //free previous value 
+    } else // already there
+        free((void *) np->value); //free previous value
 
     if (np->value == NULL)
        return NULL;
@@ -61,9 +61,9 @@ void displayTable(dict_t *hashtab[HASHSIZE])
           printf("Tag:\t\tPC:\t\t\t\tSource:\t\t\tTemplate:\tRange:\t\tDescription:\n");
       		for(;t!=NULL;t=t->next)
       		{
-				    printf("%X\t\t%s\t\t%s\t\t%X\t\t\t%s\t\t\t%s\n",t->key,t->value->PC?"primitive":"constructed",
-                                                         t->value->Source?"ICC":"Terminal",t->value->Template, 
-                                                         t->value->RangeLen, t->value->Description);
+				    //printf("%X\t\t%s\t\t%s\t\t%X\t\t\t%s\t\t\t%s\n",t->key,t->value->PC?"primitive":"constructed",
+            //                                             t->value->Source?"ICC":"Terminal",t->value->Template,
+             //                                            t->value->RangeLen, t->value->Description);
       			printf("\n");
     		  }
   		}
