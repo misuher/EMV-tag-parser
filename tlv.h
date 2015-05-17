@@ -11,7 +11,7 @@ typedef struct{
 
 typedef struct{
 	tlv_t tlv;
-	unsigned char PC; /* primitive || constructed */
+	unsigned char PC; /*  constructed || primitive */
 	unsigned char Source; /* ICC || Terminal */
 	unsigned short Template;/* templeate al que pertenece en hexa*/
 	unsigned char *RangeLen; /* rango teorico de la longitud del campo */

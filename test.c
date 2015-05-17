@@ -47,18 +47,7 @@ int main(){
 	tlvInfo_init(t);
 	int tindex =0;
 	emvparse(test, size, t, &tindex , 0, dict);
-
-	int i,j;
-	for(i=0; i<tindex; i++){
-		printf("\n" );
-		printf("Tag:%X\n", t[i].tlv.Tag);
-		printf("len:%d\n", t[i].tlv.Len);
-		printf("%s","val:");
-		for(j=0; j< t[i].tlv.Len; j++){
-			printf("%X", t[i].tlv.Val[j]);
-		}
-		printf("\n");
-	}
+	emvPrint_result(t, tindex);
 
 	return 0;
 }

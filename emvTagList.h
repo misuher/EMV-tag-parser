@@ -12,7 +12,9 @@ int emvInfo_get(tlvInfo_t * t,int * tindex, dict_t *hashtab[HASHSIZE]);
 
 tlvInfo_t  emvparse(unsigned char arr[], unsigned short size, tlvInfo_t * t, int * tindex, int index, dict_t *hashtab[HASHSIZE]);
 
-void emvPrint_result(tlvInfo_t* t);
+void emvPrint_result(tlvInfo_t* t, int tindex);
+
+char * emvPrint_tabs(int numTabs);
 
 void emvInit(dict_t *hashtab[HASHSIZE]);
 

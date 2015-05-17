@@ -62,11 +62,52 @@ tlvInfo_t emvparse(unsigned char arr[], unsigned short size, tlvInfo_t * t, int 
 		{ //several consecutive primite tlv's
 			return emvparse(&arr[index], size-index , t, tindex, 0 , hashtab);
 		}
-	printf("%s\n", "NO RETURN");
 }
 
-void emvPrint_result(tlvInfo_t* t){
+void emvPrint_result(tlvInfo_t* t, int tindex){
+	int i,j;
+	int tabs=1;
+	int composedLen, trackLen ;
+	printf("\n" );
+	for(i=0; i<tindex; i++){
+		if(trackLen >=composedLen) tabs--;
+		printf("%sTag:%X(%s)\n", emvPrint_tabs(tabs), t[i].tlv.Tag, t[i].Description);
+		printf("%slen:%X(decimal: %d )\n", emvPrint_tabs(tabs+1), t[i].tlv.Len, t[i].tlv.Len);
+		printf("%sTemplate:%X\n", emvPrint_tabs(tabs+1), t[i].Template);
+		printf("%sSource:%s\n", emvPrint_tabs(tabs+1), t[i].Source?"ICC" : "Terminal");
+		printf("%sType:%s\n", emvPrint_tabs(tabs+1), t[i].PC?"Constructed" : "Primitive");
+		printf("%sType:%s\n", emvPrint_tabs(tabs+1), t[i].RangeLen ? t[i].RangeLen : "Unknown");
+		if(t[i].PC == COMPOSED){
+			trackLen =0;
+			composedLen = t[i].tlv.Len;
+			tabs++;
+		}else{
+			printf("%s%s",emvPrint_tabs(tabs+1), "val:");
+			for(j=0; j< t[i].tlv.Len; j++){
+				printf("%X", t[i].tlv.Val[j]);
+			}
+			printf("\n");
+			trackLen += sizeof(t[i].tlv.Tag);
+			trackLen += sizeof(t[i].tlv.Len);
+			trackLen += t[i].tlv.Len;
+		}
+	}
+}
 
+char * emvPrint_tabs(int numTabs){
+	switch (numTabs) {
+		case 0: return ""; break;
+		case 1: return "\t"; break;
+		case 2: return "\t\t"; break;
+		case 3: return "\t\t\t"; break;
+		case 4: return "\t\t\t\t"; break;
+		case 5: return "\t\t\t\t\t"; break;
+		case 6: return "\t\t\t\t\t\t"; break;
+		case 7: return "\t\t\t\t\t\t\t"; break;
+		case 8: return "\t\t\t\t\t\t\t\t"; break;
+		case 9: return "\t\t\t\t\t\t\t\t\t"; break;
+		default: return "\t\t\t\t\t\t\t\t\t"; break;
+	}
 }
 
 void emvInit(dict_t *hashtab[HASHSIZE])
