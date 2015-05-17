@@ -4,3 +4,5 @@ tlv
 *.sublime-build~
 a.out
 C
+emvTagList
+hashtable

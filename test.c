@@ -29,7 +29,7 @@ int main(){
 				02-len
 				656E-value
 	*/
-	
+
 	dict_t *dict[HASHSIZE];
 	memset(dict, 0, sizeof(dict));
 	emvInit(dict);
@@ -42,17 +42,23 @@ int main(){
 							0x53,0x2E,0x44,0x44,0x46,0x30,0x31,0xA5,0x08,0x88,0x01,
 							0x02,0x5F,0x2D,0x02,0x65,0x6E};
 	unsigned short size = sizeof(test)/sizeof(test[0]);
-
 	tlvInfo_t *t=malloc(sizeof(tlvInfo_t)*size);
+	memset(t,0,size);
 	tlvInfo_init(t);
-	t=tlv_parse(test, size);
-	tlvInfo_get(t,dict);
-	tlv_subParse(t);
-	
-	printf("%X\n", t[0].tlv.Tag);
-	printf("%X\n", t[1].tlv.Tag);
-	printf("%X\n", t[0].PC);
-	printf("%X\n", t[0].Template);
+	int tindex =0;
+	emvparse(test, size, t, &tindex , 0, dict);
+
+	int i,j;
+	for(i=0; i<tindex; i++){
+		printf("\n" );
+		printf("Tag:%X\n", t[i].tlv.Tag);
+		printf("len:%d\n", t[i].tlv.Len);
+		printf("%s","val:");
+		for(j=0; j< t[i].tlv.Len; j++){
+			printf("%X", t[i].tlv.Val[j]);
+		}
+		printf("\n");
+	}
 
 	return 0;
 }

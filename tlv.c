@@ -20,51 +20,43 @@ void tlvInfo_init(tlvInfo_t *tlv){
 	tlv->Description =NULL;
 }
 
-tlvInfo_t * tlv_parse(unsigned char *arr, unsigned short size){ 
-	/*function to parse tag,len,value and store it in an array, but doesnt parse
-	the tags inside value's*/
-	unsigned int aux;
-	unsigned int index= 0; //tracks arr reading position
-	int i,j;
-	tlvInfo_t *t;
-	tlv_t * tl;
-	if(NULL == (t=malloc(sizeof(tlvInfo_t)*size))){
+tlv_t * tlv_parse(unsigned char *arr, int * index){
+	/*function to parse one tag,len,value */
+	int j;
+	tlv_t * tlv;
+	if(NULL == (tlv = malloc(sizeof(tlv_t)))){
 		printf("%s\n", "malloc failed \n");
 	}
-	if(NULL == (tl = malloc(sizeof(tlv_t)*size))){
-		printf("%s\n", "malloc failed \n");	
+
+	printf("\n");
+	if(arr[*index]==0x9F || arr[*index]==0x5F)
+	{
+		tlv->Tag = arr[*index]<<8 | arr[*index+1];
+		*index += 1;*index += 1;
+	}else
+	{
+		tlv->Tag = arr[*index];
+		*index += 1;
 	}
-	for(i=0; i< size;i++){
-		t[i].tlv = tl[i];
+	printf("Tag:%X\n", tlv->Tag);
+
+	tlv->Len = arr[*index];
+	*index += 1;
+	printf("len:%X\n", tlv->Len);
+
+	memcpy(tlv->Val, &arr[*index], tlv->Len);
+	printf("val:");
+	for(j=0;j <tlv->Len;j++ ){
+		printf("%X", tlv->Val[j]);
 	}
-	
-	for(i=0; index < size; i++){
-		printf("\n");
-		if(arr[index]==0x9F || arr[index]==0x5F)
-		{
-			t[i].tlv.Tag = arr[index]<<8 | arr[index+1];
-			index++;index++;		
-		}else
-		{
-			t[i].tlv.Tag = arr[index];
-			index++;
-		}
-		printf("Tag:%X\n", t[i].tlv.Tag);
-		t[i].tlv.Len = arr[index]; index++;
-		printf("len:%X\n", t[i].tlv.Len);
-		memcpy(t[i].tlv.Val, &arr[index], t[i].tlv.Len);
-		printf("val:");
-		for(j=0;j <t[i].tlv.Len;j++ ){
-			printf("%X", t[i].tlv.Val[j]);
-		}
-		printf("\n");
-		index += t[i].tlv.Len;
-	}
-	return t;
+	printf("\n");
+	*index += tlv->Len;
+
+	return tlv;
 }
 
-void tlv_subParse(tlvInfo_t * t){//TODO-recursive
-	
+void tlv_subParse(tlvInfo_t * t){
+/*
 	unsigned char num=0;//num of parsed tlv's
 	int i;
 	for(i = 0; t[i].tlv.Tag!=0; i++){
@@ -76,7 +68,5 @@ void tlv_subParse(tlvInfo_t * t){//TODO-recursive
 			 printf("size:%d",num);
 			t[num+i] = *tlv_parse(t[i].tlv.Val, num);
 		}
-	}
+	}*/
 }
-
-
