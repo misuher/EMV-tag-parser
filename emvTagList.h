@@ -16,6 +16,8 @@ void emvPrint_result(tlvInfo_t* t, int tindex);
 
 char * emvPrint_tabs(int numTabs);
 
+char * emvPrint_Source(unsigned char source);
+
 void emvInit(dict_t *hashtab[HASHSIZE]);
 
 #endif //EMVTAGLIST_H

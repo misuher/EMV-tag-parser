@@ -21,8 +21,5 @@ typedef struct{
 void tlv_init(tlv_t *tlv);
 void tlvInfo_init(tlvInfo_t * tlv);
 tlv_t * tlv_parse(unsigned char arr[], int * index);
-void tlv_subParse(tlvInfo_t * t);
-
-
 
 #endif

@@ -59,11 +59,10 @@ void displayTable(dict_t *hashtab[HASHSIZE])
         else
     	{
       		t=hashtab[i];
-
       		for(;t!=NULL;t=t->next)
       		{
-                    printf("%X\t\t%s\t\t%s\t\t%X\t\t%s\t\t%s\n",t->key,t->value->PC?"primitive":"constructed",
-                                                         t->value->Source?"ICC":"Terminal",t->value->Template,
+                    printf("%X\t\t%s\t\t%s\t\t%X\t\t%s\t\t%s\n",t->key,t->value->PC?"Constructed":"Primitive",
+                                                         t->value->Source?"ICC\t":"Terminal",t->value->Template,
                                                         t->value->RangeLen, t->value->Description);
                 }
   		}

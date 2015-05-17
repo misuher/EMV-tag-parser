@@ -28,8 +28,8 @@ tlv_t * tlv_parse(unsigned char *arr, int * index){
 		printf("%s\n", "malloc failed \n");
 	}
 
-	printf("\n");
-	if(arr[*index]==0x9F || arr[*index]==0x5F)
+	//printf("\n");
+	if(arr[*index]==0x9F || arr[*index]==0x5F || arr[*index]==0xBF)
 	{
 		tlv->Tag = arr[*index]<<8 | arr[*index+1];
 		*index += 1;*index += 1;
@@ -38,18 +38,18 @@ tlv_t * tlv_parse(unsigned char *arr, int * index){
 		tlv->Tag = arr[*index];
 		*index += 1;
 	}
-	printf("Tag:%X\n", tlv->Tag);
+	//printf("Tag:%X\n", tlv->Tag);
 
 	tlv->Len = arr[*index];
 	*index += 1;
-	printf("len:%X\n", tlv->Len);
+	//printf("len:%X\n", tlv->Len);
 
 	memcpy(tlv->Val, &arr[*index], tlv->Len);
-	printf("val:");
-	for(j=0;j <tlv->Len;j++ ){
-		printf("%X", tlv->Val[j]);
-	}
-	printf("\n");
+	//printf("val:");
+	//for(j=0;j <tlv->Len;j++ ){
+	//	printf("%X", tlv->Val[j]);
+	//}
+	//printf("\n");
 	*index += tlv->Len;
 
 	return tlv;
