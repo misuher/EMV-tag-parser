@@ -69,7 +69,7 @@ tlvInfo_t emvparse(unsigned char arr[], unsigned short size, tlvInfo_t * t, int 
 void emvPrint_result(tlvInfo_t* t, int tindex){
 	int i,j;
 	int tabs=1;
-	int composedLen=10000;
+	int composedLen=0;
 	int trackLen =0;
 	printf("\n" );
 	for(i=0; i<tindex; i++){
@@ -79,7 +79,7 @@ void emvPrint_result(tlvInfo_t* t, int tindex){
 		printf("%sTemplate:%X\n", emvPrint_tabs(tabs+1), t[i].Template);
 		printf("%sSource:%s\n", emvPrint_tabs(tabs+1), emvPrint_Source(t[i].Source));
 		printf("%sType:%s\n", emvPrint_tabs(tabs+1), t[i].PC?"Constructed" : "Primitive");
-		printf("%sType:%s\n", emvPrint_tabs(tabs+1), t[i].RangeLen);
+		printf("%sRangeLen:%s\n", emvPrint_tabs(tabs+1), t[i].RangeLen);
 		if(t[i].PC == CONSTRUCTED){
 			trackLen =0;
 			composedLen = 0;
