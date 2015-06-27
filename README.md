@@ -1,5 +1,5 @@
 # EMV-tag-parser
-This is an EMV parser that when you give it a string with EMV data it will show its meaningh like the following example:
+This is an EMV parser that when you give it a string with EMV data it will show its meaning like the following example:
 
 	6F(File Control Information(FCI) Template)
 		1A
